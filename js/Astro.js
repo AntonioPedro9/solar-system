@@ -6,7 +6,7 @@ class Astro {
     this.color = color;
     this.orbit_speed = orbit_speed;
     this.satellites = { array: [], data: satellites };
-    this.angle = 0;
+    this.angle = random(TWO_PI);
   }
 
   show() {
