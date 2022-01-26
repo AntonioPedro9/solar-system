@@ -18,7 +18,7 @@ class Astro {
     translate(this.distance, 0);
     ellipse(0, 0, this.radius * 2, this.radius * 2);
 
-    if (this.satellites) {
+    if (this.satellites.data) {
       for (let i in this.satellites.array) {
         this.satellites.array[i].show();
       }
@@ -43,7 +43,7 @@ class Astro {
   orbit() {
     this.angle += this.orbit_speed;
 
-    if (this.satellites) {
+    if (this.satellites.data) {
       for (let i in this.satellites.array) {
         this.satellites.array[i].orbit();
       }
