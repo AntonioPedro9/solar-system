@@ -1,6 +1,5 @@
 class Astro {
-  constructor({ name, color, radius, distance, orbit_speed, satellites }) {
-    this.name = name;
+  constructor({ color, radius, distance, orbit_speed, satellites }) {
     this.distance = distance;
     this.radius = radius;
     this.color = color;
