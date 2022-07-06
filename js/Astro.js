@@ -1,3 +1,12 @@
+/**
+ * Astro class
+ * @param {array}  color       - Astro color in an rgb array
+ * @param {number} radius      - Astro radius
+ * @param {number} distance    - Astro distance from solar system center
+ * @param {number} orbit_speed - Astro orbit speed
+ * @param {array}  satellites  - Astro satellite array
+ * @return {void}
+ */
 class Astro {
   constructor({ color, radius, distance, orbit_speed, satellites }) {
     this.distance = distance;
@@ -5,9 +14,12 @@ class Astro {
     this.color = color;
     this.orbit_speed = orbit_speed;
     this.satellites = { array: [], data: satellites };
-    this.angle = random(TWO_PI);
+    this.angle = 0;
   }
 
+  /**
+   * Display astro on screen
+   */
   show() {
     push();
 
@@ -15,7 +27,11 @@ class Astro {
     fill(this.color);
     rotate(this.angle);
     translate(this.distance, 0);
-    ellipse(0, 0, this.radius * 2, this.radius * 2);
+
+    const scale_factor = 5000;
+    const scaled_diameter = (this.radius * 2) / scale_factor;
+
+    ellipse(0, 0, scaled_diameter);
 
     if (this.satellites.data) {
       for (let i in this.satellites.array) {
@@ -26,6 +42,9 @@ class Astro {
     pop();
   }
 
+  /**
+   * Spawns the astro's satellites
+   */
   spawnSatellites() {
     if (this.satellites.data) {
       for (let i in this.satellites.data) {
@@ -39,8 +58,11 @@ class Astro {
     }
   }
 
+  /**
+   * Make the astro orbit
+   */
   orbit() {
-    this.angle += this.orbit_speed;
+    this.angle += this.orbit_speed / 5;
 
     if (this.satellites.data) {
       for (let i in this.satellites.array) {
