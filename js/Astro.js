@@ -18,7 +18,7 @@ class Astro {
   }
 
   /**
-   * Display astro on screen
+   * Displays astro on screen
    */
   show() {
     push();
