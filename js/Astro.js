@@ -23,13 +23,30 @@ class Astro {
   show() {
     push();
 
-    noStroke();
-    fill(this.color);
     rotate(this.angle);
     translate(this.distance, 0);
 
     const scale_factor = 5000;
-    const scaled_diameter = (this.radius * 2) / scale_factor;
+    const scaled_radius = this.radius / scale_factor;
+    const scaled_diameter = scaled_radius * 2;
+
+    noStroke();
+
+    if (this.color.inner && this.color.outer) {
+      let gradient = drawingContext.createRadialGradient(
+        -scaled_radius * 0.2,
+        -scaled_radius * 0.2,
+        0,
+        0,
+        0,
+        scaled_radius,
+      );
+      gradient.addColorStop(0, this.color.inner);
+      gradient.addColorStop(1, this.color.outer);
+      drawingContext.fillStyle = gradient;
+    } else {
+      fill(this.color);
+    }
 
     ellipse(0, 0, scaled_diameter);
 
